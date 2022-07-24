@@ -1,7 +1,7 @@
 # Locals Block for custom data
 locals {
-webvm_custom_data = <<CUSTOM_DATA
-#!/bin/sh
+  webvm_custom_data = <<CUSTOM_DATA
+  #!/bin/sh
 #sudo yum update -y
 sudo yum install -y httpd
 sudo systemctl enable httpd
@@ -20,7 +20,7 @@ CUSTOM_DATA
 
 
 # Resource: Azure Linux Virtual Machine Scale Set - App1
-resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
+/*resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
   name = "${local.resource_name_prefix}-web-vmss"
   #computer_name_prefix = "vmss-app1" # if name argument is not valid one for VMs, we can use this for our VM Names
   resource_group_name = azurerm_resource_group.rg.name 
@@ -62,5 +62,5 @@ resource "azurerm_linux_virtual_machine_scale_set" "web_vmss" {
 
   #custom_data = filebase64("${path.module}/app-scripts/redhat-webvm-script.sh")    
   custom_data = base64encode(local.webvm_custom_data) 
-}
+}*/
 
